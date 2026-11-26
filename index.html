@@ -267,7 +267,10 @@ async function restoreSession() {
 
 restoreSession();
 
-const openLogin=()=>{loginModal.classList.add('show');document.getElementById('username').focus();};
+const openLogin=()=>{
+  window.location.href =
+  'https://script.google.com/macros/s/AKfycbz78Q0DTBhPiMfzToTwd-fnIG42s6vhSYe57jB9DPKHHDPw60LGNJX8xzNTi9Tgul3V/exec?login=1';
+};
 const closeLogin=()=>loginModal.classList.remove('show');
 document.getElementById('loginOpen').addEventListener('click',openLogin);
 document.getElementById('loginClose').addEventListener('click',closeLogin);
