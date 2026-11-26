@@ -169,7 +169,104 @@ document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>
 const geo=document.getElementById('geo');
 geo.addEventListener('change',()=>{document.querySelector('.header-right').innerHTML='GOVERNMENT HEALTH SCHEME<br><strong>'+geo.value.toUpperCase()+'</strong>';});
 
-const loginModal=document.getElementById('loginModal');
+
+const PMJAY_AUTH_URL =
+'https://script.google.com/macros/s/AKfycbz78Q0DTBhPiMfzToTwd-fnIG42s6vhSYe57jB9DPKHHDPw60LGNJX8xzNTi9Tgul3V/exec';
+
+const SESSION_KEY = 'pmjay_session_token';
+
+const loginModal = document.getElementById('loginModal');
+
+function openLogin() {
+  window.location.href = PMJAY_AUTH_URL + '?login=1';
+}
+
+function closeLogin() {
+  loginModal.classList.remove('show');
+}
+
+document.getElementById('loginOpen').addEventListener('click', openLogin);
+document.getElementById('loginClose').addEventListener('click', closeLogin);
+document.getElementById('loginCancel').addEventListener('click', closeLogin);
+
+loginModal.addEventListener('click', e => {
+  if (e.target === loginModal) closeLogin();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLogin();
+});
+
+// Receive the authenticated session token from Apps Script.
+const params = new URLSearchParams(location.hash.slice(1));
+const returnedToken = params.get('pmjay_session');
+
+if (returnedToken) {
+  sessionStorage.setItem(SESSION_KEY, returnedToken);
+  history.replaceState(null, '', location.pathname + location.search);
+}
+
+function verifySession(token) {
+  return new Promise(resolve => {
+    const callback = 'pmjayVerifyCallback';
+    let script;
+
+    const timer = setTimeout(() => {
+      delete window[callback];
+      if (script) script.remove();
+      resolve(null);
+    }, 10000);
+
+    window[callback] = result => {
+      clearTimeout(timer);
+      delete window[callback];
+      if (script) script.remove();
+      resolve(result && result.success ? result.user : null);
+    };
+
+    script = document.createElement('script');
+    script.src = PMJAY_AUTH_URL +
+      '?action=verify&token=' + encodeURIComponent(token) +
+      '&callback=' + callback;
+
+    script.onerror = () => {
+      clearTimeout(timer);
+      delete window[callback];
+      script.remove();
+      resolve(null);
+    };
+
+    document.body.appendChild(script);
+  });
+}
+
+async function restoreSession() {
+  const token = sessionStorage.getItem(SESSION_KEY);
+  if (!token) return;
+
+  const user = await verifySession(token);
+
+  if (!user) {
+    sessionStorage.removeItem(SESSION_KEY);
+    alert('Your session has expired. Please sign in again.');
+    return;
+  }
+
+  const header = document.querySelector('.header-right');
+  header.textContent = 'SIGNED IN: ' + user.username +
+    ' | ROLE: ' + user.role;
+
+  const button = document.getElementById('loginOpen');
+  button.textContent = 'Logout';
+
+  button.onclick = () => {
+    sessionStorage.removeItem(SESSION_KEY);
+    location.reload();
+  };
+}
+
+restoreSession();
+
 const openLogin=()=>{loginModal.classList.add('show');document.getElementById('username').focus();};
 const closeLogin=()=>loginModal.classList.remove('show');
 document.getElementById('loginOpen').addEventListener('click',openLogin);
