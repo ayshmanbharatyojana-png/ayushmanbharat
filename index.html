@@ -6,86 +6,135 @@
 <title>Ayushman Bharat PM-JAY | Overview Dashboard</title>
 <style>
 :root{--navy:#102a43;--blue:#1769aa;--teal:#0f8b8d;--green:#16845b;--orange:#e58b2a;--red:#c94c4c;--bg:#f3f6fa;--ink:#243447;--muted:#68788a;--line:#e4eaf0;--white:#fff}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink)}
 header{background:linear-gradient(115deg,#102a43,#1769aa);color:#fff;padding:22px 4.5%;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:14px}.emblem{width:48px;height:48px;border:2px solid #ffffff99;border-radius:12px;display:grid;place-items:center;font-size:25px}
-h1{font-size:clamp(20px,3vw,29px);margin:0 0 5px}.subtitle{font-size:13px;color:#dce9f5}
-.header-actions{display:flex;align-items:center;gap:14px}.header-right{font-size:12px;text-align:right;color:#e5eff8}
+.brand{display:flex;align-items:center;gap:14px}
+.emblem{width:48px;height:48px;border:2px solid #ffffff99;border-radius:12px;display:grid;place-items:center;font-size:25px}
+h1{font-size:clamp(20px,3vw,29px);margin:0 0 5px}
+.subtitle{font-size:13px;color:#dce9f5}
+.header-actions{display:flex;align-items:center;gap:14px}
+.header-right{font-size:12px;text-align:right;color:#e5eff8}
 .login-btn{background:#fff;color:#123d62;border:1px solid #ffffffaa;border-radius:8px;padding:10px 17px;font-weight:700;white-space:nowrap}
 .login-btn:hover{background:#eaf3fb}
-.modal-backdrop{display:none;position:fixed;inset:0;background:#102a43a8;z-index:20;align-items:center;justify-content:center;padding:18px}
-.modal-backdrop.show{display:flex}.login-modal{width:min(100%,390px);background:#fff;border-radius:14px;padding:24px;box-shadow:0 20px 60px #0003}
-.login-modal h2{margin:0 0 6px;color:var(--navy);font-size:20px}.login-modal p{margin:0 0 18px;color:var(--muted);font-size:12px}
-.login-modal label{display:block;font-size:12px;font-weight:650;margin:12px 0 6px}
-.login-modal input{width:100%;padding:11px;border:1px solid var(--line);border-radius:8px;font:inherit}
-.login-actions{display:flex;gap:9px;margin-top:18px}.login-actions button{flex:1}.login-message{font-size:11px;color:var(--muted);margin-top:12px;line-height:1.5}
-.close-login{float:right;border:0;background:#f1f4f7;border-radius:50%;width:30px;height:30px;padding:0;font-size:18px}
-.wrap{max-width:1440px;margin:auto;padding:24px 4.5% 40px}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:20px}
-.filters{display:flex;gap:9px;flex-wrap:wrap}select,button{font:inherit;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#fff;color:var(--ink)}
-button{cursor:pointer}button.primary{background:var(--blue);color:#fff;border-color:var(--blue)}button:hover{filter:brightness(.97)}
+.wrap{max-width:1440px;margin:auto;padding:24px 4.5% 40px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.filters{display:flex;gap:9px;flex-wrap:wrap}
+select,button{font:inherit;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#fff;color:var(--ink)}
+button{cursor:pointer}
+button.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+button:hover{filter:brightness(.97)}
 .updated{font-size:12px;color:var(--muted)}
 .notice{background:#fff8e9;border:1px solid #f2d9a8;border-left:4px solid var(--orange);padding:11px 14px;border-radius:8px;font-size:12px;color:#72521c;margin-bottom:18px}
-.section-title{display:flex;align-items:center;justify-content:space-between;margin:25px 0 13px}.section-title h2{font-size:17px;margin:0;color:var(--navy)}.section-title span{font-size:11px;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:17px;box-shadow:0 2px 8px #19324b08}
-.kpi{min-height:130px;position:relative;overflow:hidden}.kpi:after{content:"";position:absolute;width:75px;height:75px;border-radius:50%;right:-22px;top:-22px;background:var(--tint)}.kpi-label{font-size:12px;color:var(--muted);position:relative;z-index:1}.kpi-value{font-size:clamp(23px,3vw,31px);font-weight:750;margin:13px 0 5px;color:var(--tone);position:relative;z-index:1}.kpi-foot{font-size:11px;color:var(--muted)}
-.two{display:grid;grid-template-columns:1.35fr 1fr;gap:14px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.chart-card{min-height:270px}.chart-title{font-weight:700;font-size:14px;margin-bottom:5px}.chart-sub{font-size:11px;color:var(--muted);margin-bottom:15px}
-.bar-row{display:grid;grid-template-columns:105px 1fr 55px;align-items:center;gap:9px;margin:13px 0;font-size:12px}.track{height:10px;background:#edf1f5;border-radius:20px;overflow:hidden}.bar{height:100%;border-radius:20px;background:var(--blue)}
-.donut-wrap{display:flex;align-items:center;gap:22px;justify-content:center;min-height:170px}.donut{width:145px;height:145px;border-radius:50%;background:conic-gradient(var(--blue) 0 62%,var(--teal) 62% 100%);position:relative}.donut:after{content:"";position:absolute;inset:24px;background:#fff;border-radius:50%}.legend{font-size:12px;line-height:2}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px}
-.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0}.tab{padding:9px 14px;border:1px solid var(--line);background:#fff;border-radius:20px;font-size:12px}.tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-.panel{display:none}.panel.active{display:block}
-table{width:100%;border-collapse:collapse;font-size:12px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:600;background:#f8fafc}td:last-child,th:last-child{text-align:right}
-.pill{display:inline-block;padding:4px 8px;border-radius:20px;background:#e8f5ef;color:#16734e;font-size:10px}
-.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.info{padding:14px;border-radius:10px;background:#f7f9fc;border:1px solid var(--line)}.info strong{display:block;font-size:13px;margin-bottom:6px}.info p{margin:0;color:var(--muted);font-size:11px;line-height:1.5}
-footer{padding:20px 4.5%;background:#102a43;color:#d7e2ed;font-size:11px;line-height:1.6}.footer-inner{max-width:1440px;margin:auto}
-@media(max-width:950px){.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.three,.info-grid{grid-template-columns:1fr}}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin:25px 0 13px}
+.section-title h2{font-size:17px;margin:0;color:var(--navy)}
+.section-title span{font-size:11px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:17px;box-shadow:0 2px 8px #19324b08}
+.kpi{min-height:130px;position:relative;overflow:hidden}
+.kpi:after{content:"";position:absolute;width:75px;height:75px;border-radius:50%;right:-22px;top:-22px;background:var(--tint)}
+.kpi-label{font-size:12px;color:var(--muted);position:relative;z-index:1}
+.kpi-value{font-size:clamp(23px,3vw,31px);font-weight:750;margin:13px 0 5px;color:var(--tone);position:relative;z-index:1}
+.kpi-foot{font-size:11px;color:var(--muted)}
+.two{display:grid;grid-template-columns:1.35fr 1fr;gap:14px}
+.chart-card{min-height:270px}
+.chart-title{font-weight:700;font-size:14px;margin-bottom:5px}
+.chart-sub{font-size:11px;color:var(--muted);margin-bottom:15px}
+.bar-row{display:grid;grid-template-columns:105px 1fr 55px;align-items:center;gap:9px;margin:13px 0;font-size:12px}
+.track{height:10px;background:#edf1f5;border-radius:20px;overflow:hidden}
+.bar{height:100%;border-radius:20px;background:var(--blue)}
+.donut-wrap{display:flex;align-items:center;gap:22px;justify-content:center;min-height:170px}
+.donut{width:145px;height:145px;border-radius:50%;background:conic-gradient(var(--blue) 0 62%,var(--teal) 62% 100%);position:relative}
+.donut:after{content:"";position:absolute;inset:24px;background:#fff;border-radius:50%}
+.legend{font-size:12px;line-height:2}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0}
+.tab{padding:9px 14px;border:1px solid var(--line);background:#fff;border-radius:20px;font-size:12px}
+.tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.panel{display:none}
+.panel.active{display:block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600;background:#f8fafc}
+td:last-child,th:last-child{text-align:right}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.info{padding:14px;border-radius:10px;background:#f7f9fc;border:1px solid var(--line)}
+.info strong{display:block;font-size:13px;margin-bottom:6px}
+.info p{margin:0;color:var(--muted);font-size:11px;line-height:1.5}
+footer{padding:20px 4.5%;background:#102a43;color:#d7e2ed;font-size:11px;line-height:1.6}
+.footer-inner{max-width:1440px;margin:auto}
+@media(max-width:950px){.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.info-grid{grid-template-columns:1fr}}
 @media(max-width:520px){.grid{grid-template-columns:1fr 1fr;gap:8px}.card{padding:13px}.wrap{padding:18px 4%}.bar-row{grid-template-columns:85px 1fr 42px;font-size:10px}.header-right{text-align:left}}
 @media print{.toolbar,.tabs button{display:none}body{background:#fff}.card{break-inside:avoid;box-shadow:none}}
 </style>
 </head>
+
 <body>
 <header>
- <div class="brand"><div class="emblem">✚</div><div><h1>Ayushman Bharat – PM-JAY</h1><div class="subtitle">Pradhan Mantri Jan Arogya Yojana | Programme Overview Dashboard</div></div></div>
- <div class="header-actions">
-   <div class="header-right">GOVERNMENT HEALTH SCHEME<br><strong>MONITORING & PERFORMANCE OVERVIEW</strong></div>
-   <button class="login-btn" id="loginOpen" type="button">↪ Login</button>
+ <div class="brand">
+  <div class="emblem">✚</div>
+  <div>
+   <h1>Ayushman Bharat – PM-JAY</h1>
+   <div class="subtitle">Pradhan Mantri Jan Arogya Yojana | Programme Overview Dashboard</div>
   </div>
-</header>
-<div class="modal-backdrop" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
- <div class="login-modal">
-  <button class="close-login" id="loginClose" aria-label="Close login">×</button>
-  <h2 id="loginTitle">Portal Login</h2>
-  <p>Sign in to access the PM-JAY monitoring portal.</p>
-  <form id="loginForm">
-   <label for="username">Username</label><input id="username" name="username" autocomplete="username" placeholder="Enter username" required>
-   <label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter password" required>
-   <div class="login-actions"><button class="primary" type="submit">Sign in</button><button type="button" id="loginCancel">Cancel</button></div>
-  </form>
-  <div class="login-message" id="loginMessage">Demo interface only. Authentication is not connected. Connect a secure backend before using this for real accounts or sensitive data.</div>
  </div>
-</div>
+ <div class="header-actions">
+  <div class="header-right">GOVERNMENT HEALTH SCHEME<br><strong>MONITORING & PERFORMANCE OVERVIEW</strong></div>
+  <button class="login-btn" id="loginOpen" type="button">↪ Login</button>
+ </div>
+</header>
+
 <main class="wrap">
  <div class="toolbar">
   <div class="filters">
-   <select id="geo" aria-label="Geography"><option>India – National Overview</option><option>Uttar Pradesh</option><option>Ayodhya District</option></select>
-   <select id="period" aria-label="Reporting period"><option>Latest available snapshot</option><option>FY 2025–26</option><option>FY 2024–25</option></select>
+   <select id="geo" aria-label="Geography">
+    <option>India – National Overview</option>
+    <option>Uttar Pradesh</option>
+    <option>Ayodhya District</option>
+   </select>
+   <select id="period" aria-label="Reporting period">
+    <option>Latest available snapshot</option>
+    <option>FY 2025–26</option>
+    <option>FY 2024–25</option>
+   </select>
    <button class="primary" onclick="window.print()">Print / Save PDF</button>
   </div>
   <div class="updated">Dashboard template • Data values labelled by reference date</div>
  </div>
- <div class="notice"><strong>Data note:</strong> This standalone HTML is an illustrative dashboard template. The figures below are sample placeholders, not a live NHA feed or verified current totals. Replace them with the latest official PM-JAY data before publication or administrative use.</div>
+
+ <div class="notice">
+  <strong>Data note:</strong> This standalone HTML is an illustrative dashboard template. The figures below are sample placeholders, not a live NHA feed or verified current totals. Replace them with the latest official PM-JAY data before publication or administrative use.
+ </div>
 
  <div class="section-title"><h2>Scheme at a glance</h2><span>Core programme indicators</span></div>
  <div class="grid">
-  <div class="card kpi" style="--tone:#1769aa;--tint:#e5f1fb"><div class="kpi-label">Ayushman cards issued</div><div class="kpi-value">48.51 Cr+</div><div class="kpi-foot">Illustrative reference: Sep 2026</div></div>
-  <div class="card kpi" style="--tone:#0f8b8d;--tint:#e1f5f3"><div class="kpi-label">Hospital admissions</div><div class="kpi-value">13.25 Cr</div><div class="kpi-foot">Illustrative reference: Aug 2026</div></div>
-  <div class="card kpi" style="--tone:#c17a20;--tint:#fff1dc"><div class="kpi-label">Treatment value authorised</div><div class="kpi-value">₹2.03 L Cr</div><div class="kpi-foot">Illustrative reference: Aug 2026</div></div>
-  <div class="card kpi" style="--tone:#16845b;--tint:#e2f4eb"><div class="kpi-label">Empanelled hospitals</div><div class="kpi-value">38,000+</div><div class="kpi-foot">Illustrative reference: Aug 2026</div></div>
+  <div class="card kpi" style="--tone:#1769aa;--tint:#e5f1fb">
+   <div class="kpi-label">Ayushman cards issued</div>
+   <div class="kpi-value">48.51 Cr+</div>
+   <div class="kpi-foot">Illustrative reference: Sep 2026</div>
+  </div>
+  <div class="card kpi" style="--tone:#0f8b8d;--tint:#e1f5f3">
+   <div class="kpi-label">Hospital admissions</div>
+   <div class="kpi-value">13.25 Cr</div>
+   <div class="kpi-foot">Illustrative reference: Aug 2026</div>
+  </div>
+  <div class="card kpi" style="--tone:#c17a20;--tint:#fff1dc">
+   <div class="kpi-label">Treatment value authorised</div>
+   <div class="kpi-value">₹2.03 L Cr</div>
+   <div class="kpi-foot">Illustrative reference: Aug 2026</div>
+  </div>
+  <div class="card kpi" style="--tone:#16845b;--tint:#e2f4eb">
+   <div class="kpi-label">Empanelled hospitals</div>
+   <div class="kpi-value">38,000+</div>
+   <div class="kpi-foot">Illustrative reference: Aug 2026</div>
+  </div>
  </div>
 
  <div class="section-title"><h2>Performance overview</h2><span>Illustrative visual summaries</span></div>
  <div class="two">
-  <div class="card chart-card"><div class="chart-title">Illustrative programme activity</div><div class="chart-sub">Example index values for demonstrating the dashboard layout — not actual monthly counts</div>
+  <div class="card chart-card">
+   <div class="chart-title">Illustrative programme activity</div>
+   <div class="chart-sub">Example index values for demonstrating the dashboard layout — not actual monthly counts</div>
    <div class="bar-row"><span>Apr</span><div class="track"><div class="bar" style="width:48%"></div></div><strong>48</strong></div>
    <div class="bar-row"><span>May</span><div class="track"><div class="bar" style="width:58%"></div></div><strong>58</strong></div>
    <div class="bar-row"><span>Jun</span><div class="track"><div class="bar" style="width:65%"></div></div><strong>65</strong></div>
@@ -93,8 +142,17 @@ footer{padding:20px 4.5%;background:#102a43;color:#d7e2ed;font-size:11px;line-he
    <div class="bar-row"><span>Aug</span><div class="track"><div class="bar" style="width:84%"></div></div><strong>84</strong></div>
    <div class="bar-row"><span>Sep</span><div class="track"><div class="bar" style="width:92%"></div></div><strong>92</strong></div>
   </div>
-  <div class="card chart-card"><div class="chart-title">Hospital network composition</div><div class="chart-sub">Illustrative split; replace with official hospital counts</div>
-   <div class="donut-wrap"><div class="donut"></div><div class="legend"><div><i class="dot" style="background:#1769aa"></i>Public – 62%</div><div><i class="dot" style="background:#0f8b8d"></i>Private – 38%</div><div style="margin-top:8px;color:#68788a;font-size:10px">Sample distribution only</div></div></div>
+  <div class="card chart-card">
+   <div class="chart-title">Hospital network composition</div>
+   <div class="chart-sub">Illustrative split; replace with official hospital counts</div>
+   <div class="donut-wrap">
+    <div class="donut"></div>
+    <div class="legend">
+     <div><i class="dot" style="background:#1769aa"></i>Public – 62%</div>
+     <div><i class="dot" style="background:#0f8b8d"></i>Private – 38%</div>
+     <div style="margin-top:8px;color:#68788a;font-size:10px">Sample distribution only</div>
+    </div>
+   </div>
   </div>
  </div>
 
@@ -104,45 +162,69 @@ footer{padding:20px 4.5%;background:#102a43;color:#d7e2ed;font-size:11px;line-he
   <button class="tab" data-tab="admission">Admissions & claims</button>
   <button class="tab" data-tab="financial">Financial monitoring</button>
  </div>
+
  <section id="beneficiary" class="panel active">
   <div class="section-title"><h2>Beneficiary coverage</h2><span>Suggested monitoring indicators</span></div>
-  <div class="card"><table><thead><tr><th>Indicator</th><th>What to monitor</th><th>Value</th></tr></thead><tbody>
-   <tr><td>Eligible families</td><td>Families identified under scheme criteria</td><td>—</td></tr>
-   <tr><td>Ayushman cards generated</td><td>Total cards issued to eligible beneficiaries</td><td>48.51 Cr+*</td></tr>
-   <tr><td>e-KYC completed</td><td>Beneficiary authentication progress</td><td>—</td></tr>
-   <tr><td>Women beneficiaries</td><td>Cards / admissions by gender</td><td>—</td></tr>
-   <tr><td>Senior citizens (70+)</td><td>Beneficiaries covered under expanded eligibility</td><td>—</td></tr>
-  </tbody></table></div>
+  <div class="card">
+   <table>
+    <thead><tr><th>Indicator</th><th>What to monitor</th><th>Value</th></tr></thead>
+    <tbody>
+     <tr><td>Eligible families</td><td>Families identified under scheme criteria</td><td>—</td></tr>
+     <tr><td>Ayushman cards generated</td><td>Total cards issued to eligible beneficiaries</td><td>48.51 Cr+*</td></tr>
+     <tr><td>e-KYC completed</td><td>Beneficiary authentication progress</td><td>—</td></tr>
+     <tr><td>Women beneficiaries</td><td>Cards / admissions by gender</td><td>—</td></tr>
+     <tr><td>Senior citizens (70+)</td><td>Beneficiaries covered under expanded eligibility</td><td>—</td></tr>
+    </tbody>
+   </table>
+  </div>
  </section>
+
  <section id="hospital" class="panel">
   <div class="section-title"><h2>Hospital network</h2><span>Suggested monitoring indicators</span></div>
-  <div class="card"><table><thead><tr><th>Indicator</th><th>Breakdown</th><th>Value</th></tr></thead><tbody>
-   <tr><td>Empanelled hospitals</td><td>Public + private</td><td>38,000+*</td></tr>
-   <tr><td>Public hospitals</td><td>State / district / facility</td><td>—</td></tr>
-   <tr><td>Private hospitals</td><td>District / specialty</td><td>—</td></tr>
-   <tr><td>Active hospitals</td><td>Currently providing PM-JAY services</td><td>—</td></tr>
-   <tr><td>Specialty availability</td><td>Cardiology, oncology, orthopaedics, etc.</td><td>—</td></tr>
-  </tbody></table></div>
+  <div class="card">
+   <table>
+    <thead><tr><th>Indicator</th><th>Breakdown</th><th>Value</th></tr></thead>
+    <tbody>
+     <tr><td>Empanelled hospitals</td><td>Public + private</td><td>38,000+*</td></tr>
+     <tr><td>Public hospitals</td><td>State / district / facility</td><td>—</td></tr>
+     <tr><td>Private hospitals</td><td>District / specialty</td><td>—</td></tr>
+     <tr><td>Active hospitals</td><td>Currently providing PM-JAY services</td><td>—</td></tr>
+     <tr><td>Specialty availability</td><td>Cardiology, oncology, orthopaedics, etc.</td><td>—</td></tr>
+    </tbody>
+   </table>
+  </div>
  </section>
+
  <section id="admission" class="panel">
   <div class="section-title"><h2>Admissions & claims</h2><span>Suggested monitoring indicators</span></div>
-  <div class="card"><table><thead><tr><th>Indicator</th><th>Definition</th><th>Value</th></tr></thead><tbody>
-   <tr><td>Hospital admissions</td><td>Total authorised admissions</td><td>13.25 Cr*</td></tr>
-   <tr><td>Claims submitted</td><td>Claims raised by hospitals</td><td>—</td></tr>
-   <tr><td>Claims approved</td><td>Claims approved after scrutiny</td><td>—</td></tr>
-   <tr><td>Claims rejected</td><td>Claims not approved</td><td>—</td></tr>
-   <tr><td>Pending claims</td><td>Claims awaiting decision</td><td>—</td></tr>
-  </tbody></table></div>
+  <div class="card">
+   <table>
+    <thead><tr><th>Indicator</th><th>Definition</th><th>Value</th></tr></thead>
+    <tbody>
+     <tr><td>Hospital admissions</td><td>Total authorised admissions</td><td>13.25 Cr*</td></tr>
+     <tr><td>Claims submitted</td><td>Claims raised by hospitals</td><td>—</td></tr>
+     <tr><td>Claims approved</td><td>Claims approved after scrutiny</td><td>—</td></tr>
+     <tr><td>Claims rejected</td><td>Claims not approved</td><td>—</td></tr>
+     <tr><td>Pending claims</td><td>Claims awaiting decision</td><td>—</td></tr>
+    </tbody>
+   </table>
+  </div>
  </section>
+
  <section id="financial" class="panel">
   <div class="section-title"><h2>Financial monitoring</h2><span>Suggested monitoring indicators</span></div>
-  <div class="card"><table><thead><tr><th>Indicator</th><th>Definition</th><th>Value</th></tr></thead><tbody>
-   <tr><td>Treatment value authorised</td><td>Value of authorised treatment</td><td>₹2.03 L Cr*</td></tr>
-   <tr><td>Claims amount submitted</td><td>Total amount claimed by hospitals</td><td>—</td></tr>
-   <tr><td>Amount approved</td><td>Amount approved after adjudication</td><td>—</td></tr>
-   <tr><td>Amount paid</td><td>Payments released to hospitals</td><td>—</td></tr>
-   <tr><td>Outstanding amount</td><td>Approved amount pending payment</td><td>—</td></tr>
-  </tbody></table></div>
+  <div class="card">
+   <table>
+    <thead><tr><th>Indicator</th><th>Definition</th><th>Value</th></tr></thead>
+    <tbody>
+     <tr><td>Treatment value authorised</td><td>Value of authorised treatment</td><td>₹2.03 L Cr*</td></tr>
+     <tr><td>Claims amount submitted</td><td>Total amount claimed by hospitals</td><td>—</td></tr>
+     <tr><td>Amount approved</td><td>Amount approved after adjudication</td><td>—</td></tr>
+     <tr><td>Amount paid</td><td>Payments released to hospitals</td><td>—</td></tr>
+     <tr><td>Outstanding amount</td><td>Approved amount pending payment</td><td>—</td></tr>
+    </tbody>
+   </table>
+  </div>
  </section>
 
  <div class="section-title"><h2>About PM-JAY</h2><span>Scheme design</span></div>
@@ -151,6 +233,7 @@ footer{padding:20px 4.5%;background:#102a43;color:#d7e2ed;font-size:11px;line-he
   <div class="info"><strong>Cashless treatment</strong><p>Eligible beneficiaries can access covered treatment at empanelled public and private hospitals.</p></div>
   <div class="info"><strong>Nationwide portability</strong><p>Eligible beneficiaries can access covered services at empanelled hospitals across India.</p></div>
  </div>
+
  <div class="section-title"><h2>Official resources</h2></div>
  <div class="card" style="display:flex;gap:12px;flex-wrap:wrap">
   <a href="https://pmjay.gov.in/" target="_blank" rel="noopener">PM-JAY official website ↗</a>
@@ -159,128 +242,162 @@ footer{padding:20px 4.5%;background:#102a43;color:#d7e2ed;font-size:11px;line-he
  </div>
  <p style="font-size:10px;color:#7b8794;margin-top:15px">*Figures are carried over as illustrative reference values from the initial dashboard brief and require verification against current official releases. Dashes indicate data not supplied. This file works offline except for external official links.</p>
 </main>
-<footer><div class="footer-inner"><strong>Ayushman Bharat – Pradhan Mantri Jan Arogya Yojana</strong><br>Standalone HTML dashboard template • Designed for overview and programme monitoring • Update data from authoritative NHA / State Health Agency sources before official use.</div></footer>
+
+<footer>
+ <div class="footer-inner">
+  <strong>Ayushman Bharat – Pradhan Mantri Jan Arogya Yojana</strong><br>
+  Standalone HTML dashboard template • Designed for overview and programme monitoring • Update data from authoritative NHA / State Health Agency sources before official use.
+ </div>
+</footer>
+
 <script>
-document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>{
- document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
- document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
- btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');
-}));
-const geo=document.getElementById('geo');
-geo.addEventListener('change',()=>{document.querySelector('.header-right').innerHTML='GOVERNMENT HEALTH SCHEME<br><strong>'+geo.value.toUpperCase()+'</strong>';});
+(function () {
+  "use strict";
 
+  const AUTH_URL = "https://script.google.com/macros/s/AKfycbz78Q0DTBhPiMfzToTwd-fnIG42s6vhSYe57jB9DPKHHDPw60LGNJX8xzNTi9Tgul3V/exec";
+  const SESSION_KEY = "pmjay_session_token";
 
-const PMJAY_AUTH_URL =
-'https://script.google.com/macros/s/AKfycbz78Q0DTBhPiMfzToTwd-fnIG42s6vhSYe57jB9DPKHHDPw60LGNJX8xzNTi9Tgul3V/exec';
-
-const SESSION_KEY = 'pmjay_session_token';
-
-const loginModal = document.getElementById('loginModal');
-
-function openLogin() {
-  window.location.href = PMJAY_AUTH_URL + '?login=1';
-}
-
-function closeLogin() {
-  loginModal.classList.remove('show');
-}
-
-document.getElementById('loginOpen').addEventListener('click', openLogin);
-document.getElementById('loginClose').addEventListener('click', closeLogin);
-document.getElementById('loginCancel').addEventListener('click', closeLogin);
-
-loginModal.addEventListener('click', e => {
-  if (e.target === loginModal) closeLogin();
-});
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeLogin();
-});
-
-// Receive the authenticated session token from Apps Script.
-const params = new URLSearchParams(location.hash.slice(1));
-const returnedToken = params.get('pmjay_session');
-
-if (returnedToken) {
-  sessionStorage.setItem(SESSION_KEY, returnedToken);
-  history.replaceState(null, '', location.pathname + location.search);
-}
-
-function verifySession(token) {
-  return new Promise(resolve => {
-    const callback = 'pmjayVerifyCallback';
-    let script;
-
-    const timer = setTimeout(() => {
-      delete window[callback];
-      if (script) script.remove();
-      resolve(null);
-    }, 10000);
-
-    window[callback] = result => {
-      clearTimeout(timer);
-      delete window[callback];
-      if (script) script.remove();
-      resolve(result && result.success ? result.user : null);
-    };
-
-    script = document.createElement('script');
-    script.src = PMJAY_AUTH_URL +
-      '?action=verify&token=' + encodeURIComponent(token) +
-      '&callback=' + callback;
-
-    script.onerror = () => {
-      clearTimeout(timer);
-      delete window[callback];
-      script.remove();
-      resolve(null);
-    };
-
-    document.body.appendChild(script);
+  // Dashboard tabs
+  document.querySelectorAll(".tab").forEach(function (button) {
+    button.addEventListener("click", function () {
+      document.querySelectorAll(".tab").forEach(function (tab) {
+        tab.classList.remove("active");
+      });
+      document.querySelectorAll(".panel").forEach(function (panel) {
+        panel.classList.remove("active");
+      });
+      button.classList.add("active");
+      const panel = document.getElementById(button.dataset.tab);
+      if (panel) panel.classList.add("active");
+    });
   });
-}
 
-async function restoreSession() {
-  const token = sessionStorage.getItem(SESSION_KEY);
-  if (!token) return;
-
-  const user = await verifySession(token);
-
-  if (!user) {
-    sessionStorage.removeItem(SESSION_KEY);
-    alert('Your session has expired. Please sign in again.');
-    return;
+  // Geography heading
+  const geography = document.getElementById("geo");
+  if (geography) {
+    geography.addEventListener("change", function () {
+      const heading = document.querySelector(".header-right");
+      if (heading) {
+        heading.innerHTML = "GOVERNMENT HEALTH SCHEME<br><strong>" +
+          geography.value.toUpperCase() + "</strong>";
+      }
+    });
   }
 
-  const header = document.querySelector('.header-right');
-  header.textContent = 'SIGNED IN: ' + user.username +
-    ' | ROLE: ' + user.role;
+  const loginButton = document.getElementById("loginOpen");
+  const headerInfo = document.querySelector(".header-right");
 
-  const button = document.getElementById('loginOpen');
-  button.textContent = 'Logout';
+  // Login redirects to the Google Apps Script authentication page.
+  if (loginButton) {
+    loginButton.addEventListener("click", function () {
+      const token = sessionStorage.getItem(SESSION_KEY);
+      if (token) {
+        logoutFromPortal(token);
+      } else {
+        window.location.assign(AUTH_URL + "?login=1");
+      }
+    });
+  }
 
-  button.onclick = () => {
-    sessionStorage.removeItem(SESSION_KEY);
-    location.reload();
-  };
-}
+  // Receive the session token after successful login.
+  const fragment = new URLSearchParams(window.location.hash.substring(1));
+  const returnedToken = fragment.get("pmjay_session");
 
-restoreSession();
+  if (returnedToken) {
+    sessionStorage.setItem(SESSION_KEY, returnedToken);
+    window.history.replaceState(
+      null,
+      "",
+      window.location.pathname + window.location.search
+    );
+  }
 
-const openLogin=()=>{
-  window.location.href =
-  'https://script.google.com/macros/s/AKfycbz78Q0DTBhPiMfzToTwd-fnIG42s6vhSYe57jB9DPKHHDPw60LGNJX8xzNTi9Tgul3V/exec?login=1';
-};
-const closeLogin=()=>loginModal.classList.remove('show');
-document.getElementById('loginOpen').addEventListener('click',openLogin);
-document.getElementById('loginClose').addEventListener('click',closeLogin);
-document.getElementById('loginCancel').addEventListener('click',closeLogin);
-loginModal.addEventListener('click',e=>{if(e.target===loginModal)closeLogin();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLogin();});
-document.getElementById('loginForm').addEventListener('submit',e=>{
- e.preventDefault();
- document.getElementById('loginMessage').textContent='Login form is ready, but authentication is not configured. Connect Firebase Authentication or another secure identity provider to enable sign-in.';
-});
+  function callAppsScript(action, token) {
+    return new Promise(function (resolve) {
+      const callbackName = "pmjayCallback_" +
+        Math.random().toString(36).substring(2);
+
+      let script = null;
+      let finished = false;
+
+      function finish(result) {
+        if (finished) return;
+        finished = true;
+        window.clearTimeout(timer);
+
+        try {
+          delete window[callbackName];
+        } catch (error) {
+          window[callbackName] = undefined;
+        }
+
+        if (script && script.parentNode) {
+          script.parentNode.removeChild(script);
+        }
+
+        resolve(result || null);
+      }
+
+      window[callbackName] = finish;
+
+      const timer = window.setTimeout(function () {
+        finish(null);
+      }, 12000);
+
+      script = document.createElement("script");
+      script.src = AUTH_URL +
+        "?action=" + encodeURIComponent(action) +
+        "&token=" + encodeURIComponent(token) +
+        "&callback=" + encodeURIComponent(callbackName);
+
+      script.onerror = function () {
+        finish(null);
+      };
+
+      document.body.appendChild(script);
+    });
+  }
+
+  function logoutFromPortal(token) {
+    loginButton.disabled = true;
+
+    callAppsScript("logout", token).then(function () {
+      sessionStorage.removeItem(SESSION_KEY);
+      window.location.reload();
+    });
+  }
+
+  async function restoreSession() {
+    const token = sessionStorage.getItem(SESSION_KEY);
+    if (!token) return;
+
+    const result = await callAppsScript("verify", token);
+
+    if (!result || !result.success || !result.user) {
+      sessionStorage.removeItem(SESSION_KEY);
+
+      if (headerInfo) {
+        headerInfo.textContent = "GOVERNMENT HEALTH SCHEME";
+      }
+      return;
+    }
+
+    const username = String(result.user.username || "");
+    const role = String(result.user.role || "");
+
+    if (headerInfo) {
+      headerInfo.textContent =
+        "SIGNED IN: " + username + " | ROLE: " + role;
+    }
+
+    if (loginButton) {
+      loginButton.textContent = "Logout";
+      loginButton.setAttribute("aria-label", "Log out");
+    }
+  }
+
+  restoreSession();
+})();
 </script>
 </body>
 </html>
